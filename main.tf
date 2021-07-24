@@ -1,5 +1,7 @@
 # VARIABLES
 
+variable "host" {}
+variable "token" {}
 
 # VERSIONS
 
@@ -15,6 +17,7 @@ terraform {
 # PROVIDERS
 
 provider "databricks" {
+
 }
 
 resource "databricks_user" "my-user" {
