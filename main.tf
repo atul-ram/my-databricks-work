@@ -21,5 +21,8 @@ provider "databricks" {
   token = var.databricks_token
 }
 
-
+resource "databricks_user" "my-user" {
+  user_name     = "test-user@databricks.com"
+  display_name  = "Test User"
+}
 

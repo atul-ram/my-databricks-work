@@ -4,6 +4,9 @@
 
 - Step1: download terraform executable
 - Step2: copy terraform exe to a user profile path and add the same path to $system:PATH `C:\Users\atul\.terraform`
+  ```
+    set PATH=C:\Users\atul\.terraform;%PATH%
+  ```
 - Step3: configure VScode env
   - vs code extensions installed : 
     - Terraform Completer
