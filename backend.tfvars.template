@@ -1,0 +1,4 @@
+key="tf-databricks.tfstate"
+storage_account_name="terraformdemofiles"
+container_name="terraform-state"
+sas_token=""
