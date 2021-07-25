@@ -1,6 +1,12 @@
 # VARIABLES
 variable "host" {}
 variable "token" {}
+variable "client_secret" {}
+variable "client_id" {}
+variable "tenant_id" {}
+/* azuread variables*/
+variable "admin_group" {}
+variable "dev_group" {}
 
 # VERSIONS
 terraform {
@@ -9,9 +15,12 @@ terraform {
       source  = "databrickslabs/databricks"
       version = "0.3.5"
     }   
+    azuread = {
+      source = "hashicorp/azuread"
+      version = "=1.6.0"
+    }
   }
   backend "azurerm" { }
- 
 }
 
 # PROVIDERS
@@ -25,8 +34,52 @@ provider "databricks" {
   azure_tenant_id             = ""
 }
 
-resource "databricks_user" "my-user" {
-  user_name     = "test-user@databricks.com"
-  display_name  = "Test User"
+provider "azuread" {}
+
+data "databricks_group" "admin-group" {
+    display_name = "admins"
 }
+
+data "databricks_group" "users-group" {
+    display_name = "users"
+}
+
+data "azuread_group" "aad-admin-group" {
+  display_name     = var.admin_group
+  security_enabled = true
+}
+
+data "azuread_group" "aad-dev-group" {
+  display_name     = var.dev_group
+  security_enabled = true
+}
+
+data "azuread_users" "aad-admin-users" {
+  object_ids = data.azuread_group.aad-admin-group.members
+}
+
+data "azuread_users" "aad-dev-users" {
+  object_ids = data.azuread_group.aad-dev-group.members
+}
+
+resource "databricks_user" "adb-admin-user" {
+    for_each = { for i,v in data.azuread_users.aad-admin-users.users: i=>v }
+      user_name     = each.value.mail
+      display_name  = each.value.display_name
+
+}
+
+resource "databricks_user" "adb-dev-user" {
+    for_each = { for i,v in data.azuread_users.aad-dev-users.users: i=>v }
+      user_name     = each.value.mail
+      display_name  = each.value.display_name
+}
+/*
+resource "databricks_group_member" "i-am-admin"{
+
+}
+*/
+
+
+
 
