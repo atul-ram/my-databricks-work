@@ -1,2 +1,6 @@
+key=""
+storage_account_name=""
+container_name=""
 host=""
 token=""
+
