@@ -1,17 +1,17 @@
 # VARIABLES
-
 variable "host" {}
 variable "token" {}
 
 # VERSIONS
-
 terraform {
   required_providers {
     databricks = {
       source  = "databrickslabs/databricks"
       version = "0.3.5"
-    }
+    }   
   }
+  backend "azurerm" { }
+ 
 }
 
 # PROVIDERS
