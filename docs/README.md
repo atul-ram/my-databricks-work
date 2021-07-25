@@ -27,11 +27,6 @@ How many workspaces do you need to deploy? The answer to this question depends a
     <img width="400" height="300" src="https://github.com/Azure/AzureDatabricksBestPractices/blob/master/Figure2.PNG">
 </p>
 
-*Figure 3: Business Unit Subscription Design Pattern*
 
-## Deploy Workspaces in Multiple Subscriptions to Honor Azure Capacity Limits
-*Impact: Very High*
-
-Customers commonly partition workspaces based on teams or departments and arrive at that division naturally. But it is also important to partition keeping Azure Subscription and ADB Workspace limits in mind.
 
 # Cluster Policy
