@@ -18,3 +18,5 @@
 - [terraform best practises](https://julie.io/writing/terraform-on-azure-pipelines-best-practices/)
 - [list of important environment variables](https://github.com/databrickslabs/terraform-provider-databricks/blob/master/docs/index.md#Environment-variables)
 
+https://github.com/abhinavg6/azuredb-workspace-provisioner
+
